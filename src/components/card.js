@@ -10,9 +10,9 @@
     
     
     divCard.className = 'Card';                                                    
-    imagenPokemon.src = unPokemon.image;
     divCard.dataset.id = unPokemon.id;
-    divCard.dataset.idx = index; 
+    divCard.dataset.idx = index;
+    imagenPokemon.src = unPokemon.image;
     divCard.appendChild(imagenPokemon) //esté es solo un elemento por eso no necesita los parentesis
 
     // //Aquí vamos hacer match comparando el id de las tarjetas

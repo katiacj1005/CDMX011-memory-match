@@ -12,36 +12,53 @@ const dataDuplicada = arrayPokemons.concat(arrayPokemons);
     //Esté es mi divBoard 
     const divBoard = document.createElement('div');
     divBoard.className = 'Board';
-    
-    //Aquí vamos hacer match comparando el id de las tarjetas
-    // divBoard.dataset.id = arrayPokemons.id; 
- 
+  
+      let selectedItems = [];
+      let arrayIdx = [];
 
     //Está es otra forma de llamar la función flip 
-    let selectedItems = []
     function flipCard(event) {
       //console.log(event.target);
-      let selectedElement = event.currentTarget
-      const selectedId = event.currentTarget.dataset.id 
-      selectedItems.push(selectedId)
-      selectedElement.classList.toggle('Card');
+      let selectedElement = event.currentTarget;
+      let selectedId = event.currentTarget.dataset.id;
+      let selectedIdx = event.currentTarget.dataset.idx;
+      arrayIdx.push(selectedIdx);
+      selectedItems.push(selectedId);
+      selectedElement.classList.toggle('active');
       
     }
 
-      function checkForMatch (event) { 
+      function checkForMatch () { 
      if(selectedItems[0] === selectedItems[1]){
-       console.log("son par");
-       console.log(selectedItems);
+       //Aquí vamos a dejar estáticas las tarjetas
+       const pushA = document.querySelector(`[data-idx = '${arrayIdx[0]}']`)
+       const pushB = document.querySelector(`[data-idx = '${arrayIdx[1]}']`)
+       
+       pushA.style.pointerEvents = 'none';
+       pushB.style.pointerEvents = 'none';
+       selectedItems = [];
+       arrayIdx = [];
+       {
+         alert("¡hiciste match!")
+       }
+
+
       
        
     }
       else if (selectedItems.length === 2 && selectedItems[0] !== selectedItems[1]){ 
-      let selectedElement = event.currentTarget
-      selectedElement.classList.toggle('active');
-      console.log('no son par');  
-      console.log(selectedItems);
-      selectedItems = []
+        const pushA = document.querySelector(`[data-idx = '${arrayIdx[0]}']`)
+        const pushB = document.querySelector(`[data-idx = '${arrayIdx[1]}']`)
+        selectedItems = [];
+        arrayIdx = [];
+         setTimeout(() => { 
+          pushA.classList.toggle('active');
+          pushB.classList.toggle('active');
+
+         }, 200);
+
       }
+
      
       }
     
