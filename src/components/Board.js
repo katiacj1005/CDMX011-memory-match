@@ -15,10 +15,11 @@ const dataDuplicada = arrayPokemons.concat(arrayPokemons);
   
       let selectedItems = [];
       let arrayIdx = [];
+      let contador = 0;
 
     //Está es otra forma de llamar la función flip 
     function flipCard(event) {
-      //console.log(event.target);
+      console.log(event.target);
       let selectedElement = event.currentTarget;
       let selectedId = event.currentTarget.dataset.id;
       let selectedIdx = event.currentTarget.dataset.idx;
@@ -31,39 +32,36 @@ const dataDuplicada = arrayPokemons.concat(arrayPokemons);
       function checkForMatch () { 
      if(selectedItems[0] === selectedItems[1]){
        //Aquí vamos a dejar estáticas las tarjetas
-       const pushA = document.querySelector(`[data-idx = '${arrayIdx[0]}']`)
-       const pushB = document.querySelector(`[data-idx = '${arrayIdx[1]}']`)
+       const flipA = document.querySelector(`[data-idx = '${arrayIdx[0]}']`)
+       const flipB = document.querySelector(`[data-idx = '${arrayIdx[1]}']`)
        
-       pushA.style.pointerEvents = 'none';
-       pushB.style.pointerEvents = 'none';
+       flipA.style.pointerEvents = 'none';
+       flipB.style.pointerEvents = 'none';
        selectedItems = [];
        arrayIdx = [];
-       {
-         alert("¡hiciste match!")
+       contador += 1;
+       if(contador === 9) {
+         alert("¡GANASTE!")
        }
-
-
-      
        
     }
       else if (selectedItems.length === 2 && selectedItems[0] !== selectedItems[1]){ 
-        const pushA = document.querySelector(`[data-idx = '${arrayIdx[0]}']`)
-        const pushB = document.querySelector(`[data-idx = '${arrayIdx[1]}']`)
+        const flipA = document.querySelector(`[data-idx = '${arrayIdx[0]}']`)
+        const flipB = document.querySelector(`[data-idx = '${arrayIdx[1]}']`)
         selectedItems = [];
         arrayIdx = [];
          setTimeout(() => { 
-          pushA.classList.toggle('active');
-          pushB.classList.toggle('active');
+          flipA.classList.toggle('active');
+          flipB.classList.toggle('active');
+          }, 2000);
 
-         }, 200);
-
-      }
+        }
 
      
       }
     
        
-    dataDuplicada.forEach((unPokemon, index)=> divBoard.appendChild(card(unPokemon, flipCard,checkForMatch, index)));
+    dataDuplicada.forEach((unPokemon, index) => divBoard.appendChild(card(unPokemon, flipCard, checkForMatch, index)));
     console.log(dataDuplicada);
  
   
