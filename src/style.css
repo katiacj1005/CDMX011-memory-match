@@ -61,6 +61,7 @@ select {
   transition: 1s;
   transition-delay: 0.5s;
   opacity: 0;
+  
 }
 
 @media (min-width: 768px) {
@@ -76,10 +77,11 @@ select {
   }
 }
 
-.Card.active {
+.Card.active{
   transform: rotateY(0deg);
 }
-
 .Card.active img {
   opacity: 1;
+  
 }
+
