@@ -74,12 +74,14 @@ select {
     width: 120px;
     height: 120px;
     padding: 20px;
-    transform: rotateY(180deg);
   }
 }
 
-
+.Card.active{
+  transform: rotateY(0deg);
+}
 .Card.active img {
   opacity: 1;
   
 }
+

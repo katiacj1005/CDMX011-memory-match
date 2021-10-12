@@ -1,7 +1,7 @@
 
 import data from '../data/pokemon/pokemon.js';
 import card from "./card.js";
-
+import shuffle from '../shuffle.js';
 
 const arrayPokemons = data.items;
 const dataDuplicada = arrayPokemons.concat(arrayPokemons); 
@@ -12,13 +12,15 @@ const dataDuplicada = arrayPokemons.concat(arrayPokemons);
     //Esté es mi divBoard 
     const divBoard = document.createElement('div');
     divBoard.className = 'Board';
+
+    const shuffleCard = shuffle(dataDuplicada) //aquí estoy capturando el valor de retorno a shuffle con const shuffleCard =
   
       let selectedItems = [];
       let arrayIdx = [];
       let contador = 0;
 
     //Está es otra forma de llamar la función flip 
-    function flipCard(event) {
+    function flipCard(event) { 
       console.log(event.target);
       let selectedElement = event.currentTarget;
       let selectedId = event.currentTarget.dataset.id;
@@ -29,22 +31,22 @@ const dataDuplicada = arrayPokemons.concat(arrayPokemons);
       
     }
 
-      function checkForMatch () { 
+      function checkForMatch () {  
      if(selectedItems[0] === selectedItems[1]){
        //Aquí vamos a dejar estáticas las tarjetas
-       const flipA = document.querySelector(`[data-idx = '${arrayIdx[0]}']`)
-       const flipB = document.querySelector(`[data-idx = '${arrayIdx[1]}']`)
+       let flipA = document.querySelector(`[data-idx = '${arrayIdx[0]}']`)
+       let flipB = document.querySelector(`[data-idx = '${arrayIdx[1]}']`)
        
        flipA.style.pointerEvents = 'none';
        flipB.style.pointerEvents = 'none';
        selectedItems = [];
        arrayIdx = [];
        contador += 1;
-       if(contador === 9) {
+       if(contador === arrayPokemons) {
          alert("¡GANASTE!")
        }
-       
-    }
+      }
+    
       else if (selectedItems.length === 2 && selectedItems[0] !== selectedItems[1]){ 
         const flipA = document.querySelector(`[data-idx = '${arrayIdx[0]}']`)
         const flipB = document.querySelector(`[data-idx = '${arrayIdx[1]}']`)
@@ -53,7 +55,7 @@ const dataDuplicada = arrayPokemons.concat(arrayPokemons);
          setTimeout(() => { 
           flipA.classList.toggle('active');
           flipB.classList.toggle('active');
-          }, 2000);
+          }, 1000);
 
         }
 
@@ -61,7 +63,7 @@ const dataDuplicada = arrayPokemons.concat(arrayPokemons);
       }
     
        
-    dataDuplicada.forEach((unPokemon, index) => divBoard.appendChild(card(unPokemon, flipCard, checkForMatch, index)));
+    shuffleCard.forEach((unPokemon, index) => divBoard.appendChild(card(unPokemon, flipCard, checkForMatch, index)));
     console.log(dataDuplicada);
  
   

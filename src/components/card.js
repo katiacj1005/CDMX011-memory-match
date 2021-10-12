@@ -1,9 +1,3 @@
-
-// import {image} from './image.js';
-
- 
-
-  
     const card = (unPokemon, flipCard, checkForMatch,index) => {
     const divCard = document.createElement('div');
     const imagenPokemon = document.createElement('img');
@@ -23,7 +17,7 @@
     divCard.addEventListener('click', checkForMatch);
 
     
-    // console.log(image());
+
     
     return divCard;
   };
